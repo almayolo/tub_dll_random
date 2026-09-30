@@ -25,10 +25,8 @@ def generate_launch_description():
             ]
         ),
         # Node(
-        #     package='ros2_cpp_template',
+        #     package='ros2_python_template',
         #     executable='simple_sub_node',
         #     output='screen',
         # ),
-
-        # first comment
     ])
