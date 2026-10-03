@@ -26,6 +26,7 @@ Indítsd el mindkét node-ot a launch fájllal:
 
 ```bash
 ros2 launch tub_dll_random cooling_system.launch.py
+```
 
 graph TD
     subgraph tub_dll_random_pkg
@@ -39,5 +40,4 @@ graph TD
     style A fill:#4CAF50,color:#fff,stroke:#333
     style B fill:#FF9800,color:#fff,stroke:#333
     style C fill:#2196F3,color:#fff,stroke:#333
-
 
