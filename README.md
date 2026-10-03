@@ -32,16 +32,10 @@ ros2 launch tub_dll_random cooling_system.launch.py
 
 A rendszer egy publisher és egy subscriber node-ból áll, akik a /sensor/temperature topic-on keresztül kommunikálnak, a vezérlő pedig a /cooling/fan_state topic-on küldi a ventilátor állapotát.
 ```mermaid
-graph TD
-    subgraph tub_dll_random_pkg
-        A[temp_sensor_node]
-        B[cooling_controller_node]
-    end
+flowchart LR
+    TNode["/temp_sensor_node<br><i>(Hőmérséklet szimulátor)</i>"]
+    CNode["/cooling_controller_node<br><i>(Hiszterézises vezérlő)</i>"]
+    Actuator["/cooling/fan_state<br><i>(Ventilátor beavatkozó)</i>"]
 
-    A -->|/sensor/temperature (sensor_msgs/msg/Temperature)| B
-    B -->|/cooling/fan_state (std_msgs/msg/Bool)| C[Actuator / Fan]
-
-    style A fill:#4CAF50,color:#fff,stroke:#333
-    style B fill:#FF9800,color:#fff,stroke:#333
-    style C fill:#2196F3,color:#fff,stroke:#333
-```
+    TNode -->|/sensor/temperature <br> <b>sensor_msgs/msg/Temperature</b>| CNode
+    CNode -->|/cooling/fan_state <br> <b>std_msgs/msg/Bool</b>| Actuator
