@@ -28,16 +28,19 @@ Indítsd el mindkét node-ot a launch fájllal:
 ros2 launch tub_dll_random cooling_system.launch.py
 ```
 
+## Node-Topic kapcsolat
+
+A rendszer egy publisher és egy subscriber node-ból áll, akik a /sensor/temperature topic-on keresztül kommunikálnak, a vezérlő pedig a /cooling/fan_state topic-on küldi a ventilátor állapotát.
+
 graph TD
     subgraph tub_dll_random_pkg
         A[temp_sensor_node]
         B[cooling_controller_node]
     end
-    
+
     A -->|/sensor/temperature (sensor_msgs/msg/Temperature)| B
     B -->|/cooling/fan_state (std_msgs/msg/Bool)| C[Actuator / Fan]
-    
+
     style A fill:#4CAF50,color:#fff,stroke:#333
     style B fill:#FF9800,color:#fff,stroke:#333
     style C fill:#2196F3,color:#fff,stroke:#333
-
