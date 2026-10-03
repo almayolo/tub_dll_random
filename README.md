@@ -1,14 +1,28 @@
-# ROS 2 Hőmérséklet-felügyelet és Hűtésvezérlő Rendszer (`tub_dll_random`)
+# Temperature Monitor & Cooling Controller (ROS 2 Python Project)
 
-Ez a ROS 2 csomag egy hiszterézises hűtésvezérlő architektúrát valósít meg két önálló Python node segítségével.
+Ez a ROS 2 csomag egy hiszterézises hőmérséklet-felügyeleti és hűtésvezérlő rendszert valósít meg.
+Tartalmaz két Python node-ot: egy **Publisher**-t a szimulált szenzor adatok küldéséhez és egy **Subscriber**-t az adatok fogadásához és a hűtésvezérléshez.
 
-## Architektúra és Adatfolyam
+## Build menete
 
-```mermaid
-flowchart LR
-    TNode["/temp_sensor_node"]
-    CNode["/cooling_controller_node"]
-    Actuator["/cooling/fan_state (Actuator)"]
+A csomag fordítása a ROS 2 munkaterületen (`~/ros2_ws`) belül történik:
 
-    TNode -->|/sensor/temperature <br> sensor_msgs/msg/Temperature| CNode
-    CNode -->|/cooling/fan_state <br> std_msgs/msg/Bool| Actuator
+1.  Helyezkedj el a munkaterület gyökerében:
+    ```bash
+    cd ~/ros2_ws
+    ```
+2.  Futtasd a `colcon build` parancsot a csomagra korlátozva:
+    ```bash
+    colcon build --packages-select tub_dll_random
+    ```
+3.  Forrásold a környezetet:
+    ```bash
+    source install/setup.bash
+    ```
+
+## Futtatás
+
+Indítsd el mindkét node-ot a launch fájllal:
+
+```bash
+ros2 launch tub_dll_random cooling_system.launch.py
